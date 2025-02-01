@@ -1,0 +1,25 @@
+services:  
+  sod-db:  
+    image: postgres:latest  
+    environment:  
+      POSTGRES_USER: userdb  
+      POSTGRES_PASSWORD: password123  
+      POSTGRES_DB: sod  
+    ports:  
+      - "5432:5432"  
+    volumes:  
+      - postgres_data:/var/lib/postgresql/data  
+  
+  sod-app:  
+    build:
+      context: .
+      dockerfile: Dockerfile 
+    ports:  
+      - "8080:8080"  
+    volumes:  
+      - .:/app
+    depends_on:
+      - sod-db
+  
+volumes:  
+  postgres_data:  
