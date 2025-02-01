@@ -1,0 +1,92 @@
+openapi: 3.0.3
+info:
+  title: Ticket Management API
+  description: API for managing tickets with status validation and user existence checks.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local Development Server
+paths:
+  /tickets:
+    post:
+      summary: Create a new ticket
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketCreateRequest'
+      responses:
+        '201':
+          description: Ticket created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Ticket created successfully
+                  ticket:
+                    $ref: '#/components/schemas/TicketResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Ticket title must be between 10 and 100 characters
+components:
+  schemas:
+    TicketCreateRequest:
+      type: object
+      required:
+        - ticket_title
+        - ticket_msg
+        - user_id
+      properties:
+        ticket_title:
+          type: string
+          minLength: 10
+          maxLength: 100
+          description: Title of the ticket
+          example: Software is not working
+        ticket_msg:
+          type: string
+          minLength: 100
+          description: Message of the ticket
+          example: <p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>
+        user_id:
+          type: integer
+          description: ID of the user creating the ticket
+          example: 1
+    TicketResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the ticket
+          example: 5
+        title:
+          type: string
+          description: Title of the ticket
+          example: Software is not working
+        msg:
+          type: string
+          description: Message of the ticket
+          example: <p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>
+        user_id:
+          type: integer
+          description: ID of the user creating the ticket
+          example: 1
+        status:
+          type: string
+          enum:
+            - Open
+            - Closed
+            - Assigned
+          description: Status of the ticket
+          example: Open
