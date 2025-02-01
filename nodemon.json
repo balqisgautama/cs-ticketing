@@ -1,0 +1,5 @@
+{
+    "watch": ["."],
+    "ext": "go json",
+    "exec": "docker-compose down && docker rmi -f cs-ticketing || true && docker rmi -f cs-ticketing-sod-app || true && docker build -t cs-ticketing -f Dockerfile . && docker-compose up -d"
+}
