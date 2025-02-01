@@ -10,14 +10,20 @@ import (
 )
 
 type TicketService struct {
-	ticketQueries *queries.TicketQueries
-	userQueries   *queries.UserQueries
+	ticketQueries       *queries.TicketQueries
+	userQueries         *queries.UserQueries
+	ticketStatusQueries *queries.TicketStatusQueries
 }
 
-func NewTicketService(ticketQueries *queries.TicketQueries, userQueries *queries.UserQueries) *TicketService {
+func NewTicketService(
+	ticketQueries *queries.TicketQueries,
+	userQueries *queries.UserQueries,
+	ticketStatusQueries *queries.TicketStatusQueries,
+) *TicketService {
 	return &TicketService{
-		ticketQueries: ticketQueries,
-		userQueries:   userQueries,
+		ticketQueries:       ticketQueries,
+		userQueries:         userQueries,
+		ticketStatusQueries: ticketStatusQueries,
 	}
 }
 
@@ -32,7 +38,7 @@ func (s *TicketService) CreateTicket(dtoin *dtoin.Ticket) (*dtoout.Ticket, error
 	}
 
 	// Create a ticket
-	ticket := modeldb.Ticket{
+	ticketModel := modeldb.Ticket{
 		UserID:    dtoin.UserID,
 		Title:     dtoin.Title,
 		Msg:       dtoin.Msg,
@@ -40,7 +46,12 @@ func (s *TicketService) CreateTicket(dtoin *dtoin.Ticket) (*dtoout.Ticket, error
 		CreatedAt: time.Now().Unix(),
 	}
 
-	ticketFromDB, err := s.ticketQueries.CreateTicket(&ticket)
+	ticketFromDB, err := s.ticketQueries.CreateTicket(&ticketModel)
+	if err != nil {
+		return nil, err
+	}
+
+	status, err := s.ticketStatusQueries.FindTicketStatusByID(ticketFromDB.StatusID)
 	if err != nil {
 		return nil, err
 	}
@@ -50,7 +61,7 @@ func (s *TicketService) CreateTicket(dtoin *dtoin.Ticket) (*dtoout.Ticket, error
 		UserID: ticketFromDB.UserID,
 		Title:  ticketFromDB.Title,
 		Msg:    ticketFromDB.Msg,
-		Status: dtoout.TranslateStatus(ticketFromDB.StatusID),
+		Status: dtoout.TranslateStatus(status.Name),
 	}
 
 	return &result, nil

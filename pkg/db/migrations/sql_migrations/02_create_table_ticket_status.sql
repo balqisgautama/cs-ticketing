@@ -11,7 +11,7 @@ CREATE SEQUENCE IF NOT EXISTS ticket_status_id_pkey_sec
 
 CREATE TABLE IF NOT EXISTS "ticket_statuses" (
     "id" BIGINT DEFAULT nextval('ticket_status_id_pkey_sec'::regclass) NOT NULL PRIMARY KEY,
-    "name" VARCHAR(256) NOT NULL,
+    "name" VARCHAR(3) NOT NULL,
     "note" TEXT NULL,
     "created_at" INT NOT NULL,
     "updated_at" INT NULL,

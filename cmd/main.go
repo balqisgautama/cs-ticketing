@@ -31,7 +31,8 @@ func main() {
 
 	ticketQueries := queries.NewTicketQueries(db)
 	userQueries := queries.NewUserQueries(db)
-	ticketService := service.NewTicketService(ticketQueries, userQueries)
+	ticketStatusQueries := queries.NewTicketStatusQueries(db)
+	ticketService := service.NewTicketService(ticketQueries, userQueries, ticketStatusQueries)
 	ticketHandler := handler.NewTicketHandler(ticketService)
 
 	// Initialize Gin router

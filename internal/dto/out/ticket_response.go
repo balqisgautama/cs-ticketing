@@ -9,13 +9,13 @@ type Ticket struct {
 }
 
 // TranslateStatus translates the status code to a user-friendly string
-func TranslateStatus(statusID uint) string {
-	switch statusID {
-	case 1:
+func TranslateStatus(status string) string {
+	switch status {
+	case "opn":
 		return "Open"
-	case 2:
+	case "cld":
 		return "Closed"
-	case 3:
+	case "asn":
 		return "Assigned"
 	default:
 		return "Unknown"
