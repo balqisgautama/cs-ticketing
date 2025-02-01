@@ -5,10 +5,10 @@ type Postgresql struct {
 	Schema            string `mapstructure:"schema"`
 	MaxOpenConnection int    `mapstructure:"max_open_connection"`
 	MaxIdleConnection int    `mapstructure:"max_idle_connection"`
-}
 
-type Redis struct {
-	Address  string `mapstructure:"address"`
-	Db       int    `mapstructure:"db"`
+	Host     string `mapstructure:"host"`
+	Port     string `mapstructure:"port"`
+	User     string `mapstructure:"user"`
 	Password string `mapstructure:"password"`
+	DDName   string `mapstructure:"db_name"`
 }
