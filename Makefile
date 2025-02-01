@@ -30,3 +30,7 @@ rebuild: stop clean run
 # Run tests  
 test:  
 	go test $(TEST_FLAGS) ./...  
+
+# Migration
+db-migrate:
+	go run cmd/migrate/main.go
