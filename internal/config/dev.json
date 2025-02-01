@@ -1,0 +1,15 @@
+{
+    "server": {
+      "prefix_path": "sod",
+      "host": "localhost",
+      "port": 8080,
+      "address": "localhost:8080",
+      "version": "1.0.0"
+    },
+    "postgresql": {
+      "address": "user=userdb password=password123 dbname=sod sslmode=disable host=sod-db port=5432",
+      "schema": "public",
+      "max_open_connection": 500,
+      "max_idle_connection": 100
+    }
+  }
