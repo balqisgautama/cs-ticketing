@@ -9,7 +9,7 @@ CREATE SEQUENCE IF NOT EXISTS ticket_status_id_pkey_sec
     NO MAXVALUE
     CACHE 1;
 
-CREATE TABLE IF NOT EXISTS "ticket_status" (
+CREATE TABLE IF NOT EXISTS "ticket_statuses" (
     "id" BIGINT DEFAULT nextval('ticket_status_id_pkey_sec'::regclass) NOT NULL PRIMARY KEY,
     "name" VARCHAR(256) NOT NULL,
     "note" TEXT NULL,
