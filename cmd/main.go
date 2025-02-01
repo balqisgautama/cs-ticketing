@@ -2,7 +2,10 @@ package main
 
 import (
 	"cs-ticketing/internal/config"
-	pkgdbpostgresql "cs-ticketing/pkg/db/migrations"
+	dbpostgresql "cs-ticketing/internal/db"
+	handler "cs-ticketing/internal/handlers"
+	"cs-ticketing/internal/queries"
+	service "cs-ticketing/internal/services"
 	"fmt"
 	"log"
 
@@ -10,33 +13,31 @@ import (
 )
 
 func main() {
-	c, err := config.LoadConfig()
+	c, err := config.LoadConfig("./config")
 	if err != nil {
 		log.Fatalln("Error loading config", err)
 	}
 
-	dbMigration, err := pkgdbpostgresql.GetDbConnection(
-		c.Postgresql.Schema,
-		c.Postgresql.Address,
-		c.Postgresql.MaxOpenConnection,
-		c.Postgresql.MaxIdleConnection,
+	db, err := dbpostgresql.ConnectDB(
+		c.Postgresql.Host,
+		c.Postgresql.Port,
+		c.Postgresql.User,
+		c.Postgresql.Password,
+		c.Postgresql.DDName,
 	)
 	if err != nil {
 		log.Fatalln("Error connecting to the database", err)
 	}
 
-	err = pkgdbpostgresql.DBMigration(dbMigration)
-	if err != nil {
-		log.Fatalln("Error migrating the database", err)
-	}
-
-	err = dbMigration.Close()
-	if err != nil {
-		log.Fatalln("Error closing the database connection", err)
-	}
+	ticketQueries := queries.NewTicketQueries(db)
+	userQueries := queries.NewUserQueries(db)
+	ticketService := service.NewTicketService(ticketQueries, userQueries)
+	ticketHandler := handler.NewTicketHandler(ticketService)
 
 	// Initialize Gin router
 	r := gin.Default()
+
+	r.POST("/tickets", ticketHandler.CreateTicketHandler)
 
 	// Start the server
 	port := fmt.Sprintf(":%d", c.Server.Port)

@@ -8,8 +8,8 @@ import (
 	"github.com/spf13/viper"
 )
 
-func LoadConfig() (appConfig modelconfig.Config, err error) {
-	viper.AddConfigPath("./config")
+func LoadConfig(path string) (appConfig modelconfig.Config, err error) {
+	viper.AddConfigPath(path)
 	viper.SetConfigName("dev.json")
 	viper.SetConfigType("json")
 
