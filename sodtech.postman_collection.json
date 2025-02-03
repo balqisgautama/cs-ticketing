@@ -1,0 +1,1184 @@
+{
+	"info": {
+		"_postman_id": "f3027826-262f-431c-b5de-9f2b7a65e3e2",
+		"name": "sodtech",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15439567"
+	},
+	"item": [
+		{
+			"name": "CREATE TICKET",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"ticket_title\": \"Software is not working\",\n  \"ticket_msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n  \"user_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/tickets",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tickets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ticket_title\": \"Software is not working\",\n  \"ticket_msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n  \"user_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2025 06:15:39 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "247"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Ticket created successfully\",\n    \"ticket\": {\n        \"id\": 556,\n        \"title\": \"Software is not working\",\n        \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n        \"user_id\": 1,\n        \"status\": \"Open\",\n        \"created_at\": \"2025-02-03 20:07:11\"\n    }\n}"
+				},
+				{
+					"name": "invalid-title",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ticket_title\": \"This is a valid ticket message with more than 100 characters. It should pass the validation checks.as\",\n  \"ticket_msg\": \"<p>Hello, please assist as I cannot take a screenshot</p><p>Hello, please assist as I cannot take a screenshot</p>\",\n  \"user_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Jan 2025 15:44:56 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Ticket title must be between 10 and 100 characters\"\n}"
+				},
+				{
+					"name": "invalid-msg",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ticket_title\": \"Software is not working\",\n  \"ticket_msg\": \"<p>Hello, please assist as I cannot take a screenshot</p>\",\n  \"user_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Jan 2025 15:45:32 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Ticket message must be at least 100 characters\"\n}"
+				},
+				{
+					"name": "invalid-field-useri-id",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ticket_title\": \"Software is not working\",\n  \"ticket_msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Jan 2025 15:45:56 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "26"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"UserID is required\"\n}"
+				},
+				{
+					"name": "invalid-field-ticket-msg",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ticket_title\": \"Software is not working\",\n  \"user_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Jan 2025 15:46:18 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "26"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"TicketMsg is required\"\n}"
+				},
+				{
+					"name": "invalid-field-ticket-title",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ticket_msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n  \"user_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Jan 2025 15:46:49 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "26"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"TicketTitle is required\"\n}"
+				},
+				{
+					"name": "user-not-found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ticket_title\": \"Software is not working\",\n  \"ticket_msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n  \"user_id\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Feb 2025 06:22:28 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "31"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"user does not exist\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GET TICKETS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"page_size\": 10,\n    \"page\": 1,\n    \"filter\": {\n        \"filter_name\": \"created_at\",\n        \"filter_type\": \"between\",\n        \"filter_value\": \"2025-01-18,2025-02-03\"\n    },\n    \"sort\": {\n        \"sort_name\": \"user_id\",\n        \"sort_dir\": \"asc\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/tickets",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tickets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 10,\n    \"page\": 1,\n    \"filter\": {\n        \"filter_name\": \"created_at\",\n        \"filter_type\": \"after\",\n        \"filter_value\": \"2025-01-19\"\n    },\n    \"sort\": {\n        \"sort_name\": \"created_at\",\n        \"sort_dir\": \"asc\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Jan 2025 16:16:28 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "851"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"tickets\": [\n        {\n            \"id\": 14,\n            \"title\": \"ameimqibhvnfhdr\",\n            \"msg\": \"ogwcwvwonihvllcbdcooimvdtczhhcyskrxgucakngcadeitnxuiulsoyxjzzkvtiwlnmxqiccfhjxoqcsrxbpjghqqdwsgwfwtkl\",\n            \"user_id\": 1,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:40\"\n        },\n        {\n            \"id\": 16,\n            \"title\": \"ctapjpmiehoebzz\",\n            \"msg\": \"xuyqznkqcjumivolllkssiitqpackxzfvjsaiiuczqjtfkccglttumcnfrftgptwizjrampqjtbxfgiccpfttmrjiczwkuijrcven\",\n            \"user_id\": 1,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:40\"\n        },\n        {\n            \"id\": 11,\n            \"title\": \"fvmvlyjomcziaun\",\n            \"msg\": \"ohwijsltsyviwqriodxuedhfizyskbnrdunsqtzhcskzsrsjptxwiedyonxvfqriilzsjeffutjmeufbooqpvllaxjmpjyfgnjmbq\",\n            \"user_id\": 1,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:39\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"qhlzcfyojggcqpu\",\n            \"msg\": \"vyanrpiwfwygsgratzwaxpadbeqxoddxayouirpsorogfqcwdbggjhkhwymysuihpamaptmhfvseliovyzlhhsxndnjywjlsbhuyb\",\n            \"user_id\": 1,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:07\"\n        },\n        {\n            \"id\": 6,\n            \"title\": \"vzycqhbqxorpjfu\",\n            \"msg\": \"byifwycyhsqrbnjmohbdvforsucboygkbwevolbmyicyeuttgasihexxyqbrskeodvvjljgdrishmyxmvxqwuefzxieqoocmyktdu\",\n            \"user_id\": 1,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:07\"\n        },\n        {\n            \"id\": 7,\n            \"title\": \"eqxvlcitiafmbpj\",\n            \"msg\": \"whjlluxwtqgkcxjcvikhjhywrceuzhyyxfbglkfejztvkkxkudisyfomugfcfcfqplmaoqgiwuoajzcoieeqfefmwmsqtunsvgice\",\n            \"user_id\": 1,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:08\"\n        },\n        {\n            \"id\": 8,\n            \"title\": \"geaxkpiwccmnbge\",\n            \"msg\": \"aahikdptpfgdqfqbnpdxnblkcfyasvholoyjnuirmchhwkzrpfxxrwqkqelnirmkncthfdyryukyagfwubcbxfoqizdocbifwyppz\",\n            \"user_id\": 1,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:08\"\n        },\n        {\n            \"id\": 1,\n            \"title\": \"edwsdvosvvmazuu\",\n            \"msg\": \"zcvkooubpptfyodicstvytvwjcrkpxlspgjdginopssbtfijblpoiwxjhxwgolnrqsvmjejqzopzwecnxwajepwwaiyxgxwnrxbhm\",\n            \"user_id\": 1,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:04\"\n        },\n        {\n            \"id\": 10,\n            \"title\": \"neqyydybexjtuoy\",\n            \"msg\": \"ytewojhxrcszxuznavwydtqwrvbngsswjuxxrdyemmahanqcqhoeaeehgvduzflxktesuyzswhyvihnkxxvsrcwlpwogksuazrcwx\",\n            \"user_id\": 1,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:39\"\n        },\n        {\n            \"id\": 24,\n            \"title\": \"zjieikmlectqztu\",\n            \"msg\": \"soxzhjdrrysfhifciqnsftfajrmdvbkjxvpfrpplicstobptgmgplvlvyumzljmkxhveihhlxacsitjhfzyajvimgukjfmwlakeze\",\n            \"user_id\": 1,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:40\"\n        }\n    ],\n    \"total_page\": 56,\n    \"current_page\": 1,\n    \"previous_page\": 0,\n    \"next_page\": 2,\n    \"total_items\": 555,\n    \"page_size\": 10\n}"
+				},
+				{
+					"name": "success - no content",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 10,\n    \"page\": 1,\n    \"filter\": {\n        \"filter_name\": \"created_at\",\n        \"filter_type\": \"between\",\n        \"filter_value\": \"2025-01-18,2025-02-02\"\n    },\n    \"sort\": {\n        \"sort_name\": \"user_id\",\n        \"sort_dir\": \"asc\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Feb 2025 02:49:18 GMT"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "success - page and size only",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 100,\n    \"page\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Feb 2025 11:51:03 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"tickets\": [\n        {\n            \"id\": 20,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 19,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 18,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 17,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 16,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 15,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 14,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 13,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 12,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 11,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 10,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 9,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 8,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 7,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 6,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 1,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        }\n    ],\n    \"total_page\": 1,\n    \"current_page\": 1,\n    \"previous_page\": 0,\n    \"next_page\": 0,\n    \"total_items\": 20,\n    \"page_size\": 50\n}"
+				},
+				{
+					"name": "success - sort",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 10,\n    \"page\": 1,\n    \"sort\": {\n        \"sort_name\": \"created_at\",\n        \"sort_dir\": \"desc\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Feb 2025 11:52:08 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"tickets\": [\n        {\n            \"id\": 20,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 19,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 18,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 17,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 15,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 16,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 14,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 13,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 11,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 12,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        }\n    ],\n    \"total_page\": 2,\n    \"current_page\": 1,\n    \"previous_page\": 0,\n    \"next_page\": 2,\n    \"total_items\": 20,\n    \"page_size\": 10\n}"
+				},
+				{
+					"name": "success - filter and sort",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 15,\n    \"page\": 1,\n    \"filter\": {\n        \"filter_name\": \"created_at\",\n        \"filter_type\": \"between\",\n        \"filter_value\": \"2025-01-18,2025-02-03\"\n    },\n    \"sort\": {\n        \"sort_name\": \"created_at\",\n        \"sort_dir\": \"asc\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Feb 2025 11:52:42 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"tickets\": [\n        {\n            \"id\": 1,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 6,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 7,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 8,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 9,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 10,\n            \"title\": \"Software is not working\",\n            \"msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        }\n    ],\n    \"total_page\": 2,\n    \"current_page\": 1,\n    \"previous_page\": 0,\n    \"next_page\": 2,\n    \"total_items\": 20,\n    \"page_size\": 10\n}"
+				},
+				{
+					"name": "failed - date must not be greater than today",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 15,\n    \"page\": 1,\n    \"filter\": {\n        \"filter_name\": \"created_at\",\n        \"filter_type\": \"after\",\n        \"filter_value\": \"2025-02-04\"\n    },\n    \"sort\": {\n        \"sort_name\": \"created_at\",\n        \"sort_dir\": \"asc\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Feb 2025 11:54:41 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "47"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"date must not be greater than today\"\n}"
+				},
+				{
+					"name": "failed - required field",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page\": 1,\n    \"filter\": {\n        \"filter_name\": \"created_at\",\n        \"filter_type\": \"after\",\n        \"filter_value\": \"2025-02-03\"\n    },\n    \"sort\": {\n        \"sort_name\": \"created_at\",\n        \"sort_dir\": \"asc\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Feb 2025 11:55:41 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "32"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"PageSize is required\"\n}"
+				},
+				{
+					"name": "failed - invalid date format",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 100,\n    \"page\": 1,\n    \"filter\": {\n        \"filter_name\": \"created_at\",\n        \"filter_type\": \"after\",\n        \"filter_value\": \"2025-02\"\n    },\n    \"sort\": {\n        \"sort_name\": \"created_at\",\n        \"sort_dir\": \"asc\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Feb 2025 12:01:51 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "53"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"invalid date format (example: 2025-01-20)\"\n}"
+				},
+				{
+					"name": "failed - invalid filter_name value",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 100,\n    \"page\": 1,\n    \"filter\": {\n        \"filter_name\": \"id\",\n        \"filter_type\": \"after\",\n        \"filter_value\": \"2025-02-03\"\n    },\n    \"sort\": {\n        \"sort_name\": \"created_at\",\n        \"sort_dir\": \"asc\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Feb 2025 12:02:14 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "113"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Key: 'TicketList.Filter.FilterName' Error:Field validation for 'FilterName' failed on the 'oneof' tag\"\n}"
+				},
+				{
+					"name": "success- sort - user_id - asc",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 5,\n    \"page\": 1,\n    \"sort\": {\n        \"sort_name\": \"user_id\",\n        \"sort_dir\": \"asc\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Feb 2025 12:12:31 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1850"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"tickets\": [\n        {\n            \"id\": 24,\n            \"title\": \"vhxghmwsupraoxj\",\n            \"msg\": \"mvsgiddtwujtriircmigihiavzfcqtazghzaewjdmaxyygdaocpkhagwzwgbivkrhxrenoesikcshtdhwjbfdagvskygnqhqkyiwo\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 31,\n            \"title\": \"xqnziycxpsdjvzj\",\n            \"msg\": \"jisfwpsbbrcegplcmbvtwjhimmgkrdflppcugpqegkppztqrbmzrtjjwgcblfirxdabiqqvgxcnqcgjuqswtcvwdlllddjjoexmap\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 13,\n            \"title\": \"rvhyqupwzoaagws\",\n            \"msg\": \"nquyjamzvglvhhkbqmgqmrrqxsvkthebnhveyypyovxujncsthaunjgmeatsqzxvnpytfsgrhxroboksfooywodtmrzkeuhjgryfo\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 20,\n            \"title\": \"puqwltrssbkeent\",\n            \"msg\": \"fkluqtgjjrhhteuukzsnmpbwzzlbhwtqewsjluoqmiswzcuwwhnfhdnkgqgkwgmnvditemmtvbuohkrxwekvmukvdxlfbxlcqrsnb\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 6,\n            \"title\": \"wzvpkssuzqxubsz\",\n            \"msg\": \"jqzemktrnlewdnoditsjmuiritnmswxhdgkkcaflfvraxnrbhiyysmrdzeoejmkghiwrrijqvdfyyhbzpgrfdrspxdhbobwibgczp\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 7,\n            \"title\": \"hvttnivfwgvcory\",\n            \"msg\": \"eyumtctznmsyooorimtysilcznkydakaeneagmrmcbvqgjzdytxrrqsjniiplkqvozvdxkljzethuvembgfadpkpqrajxtoxytrsg\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 1,\n            \"title\": \"izyxmasnbnudrfh\",\n            \"msg\": \"yahcuswunwkkjncgyaqlsbkhkiuldnsacwckxwnwyfihkjkjuqqmscugzutaheymovkpbhzvbwmsygeywqeomehkaoanmxchuanyk\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 11,\n            \"title\": \"dggipuevorerrtm\",\n            \"msg\": \"watpkfihadnfbgdrlqvqfhrqvmpzqtjiccjomdktgrayymacudsfjhyatiixmmwlktdghpabaevnxiawayyeqhtvbxovmiiimsvqn\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 16,\n            \"title\": \"vvfsehecrtdudce\",\n            \"msg\": \"ytwojnirjzugtoajzoyjsslefwqafzrlnaopbiokshsnegypmqmjbsiqybdadhbkoptuqsmjxgrpmdlzjubvdujsalbdmfjpynfrn\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 37,\n            \"title\": \"rekpfgrpcfbeatm\",\n            \"msg\": \"sawwytvzdpoyrudcqixgimmizoqnqhzvwliqsgbevkqhjfnyotvvndlmodikiyzftnsviydifhjkfydwwpdzizvememidrcvbdtxd\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        }\n    ],\n    \"total_page\": 556,\n    \"current_page\": 1,\n    \"previous_page\": 0,\n    \"next_page\": 2,\n    \"total_items\": 5559,\n    \"page_size\": 10\n}"
+				},
+				{
+					"name": "success - sort - user_id - desc",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 10,\n    \"page\": 1,\n    \"sort\": {\n        \"sort_name\": \"user_id\",\n        \"sort_dir\": \"desc\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Feb 2025 12:13:25 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1850"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"tickets\": [\n        {\n            \"id\": 19,\n            \"title\": \"pcdsrfvfvogbuhk\",\n            \"msg\": \"vgbthkhfqyvituueecilvvhfnegywudenysexowrbwemehtfbxhvupmpzpwotcujkwwetajkofdymvlfawkdttchsnycqvufeuedb\",\n            \"user_id\": 3,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 29,\n            \"title\": \"apldhqtngamhubw\",\n            \"msg\": \"wkktuxttffmzpxjfwsdlwewiktvgqkdpsdoycujwwptfbxolznigqpiowsnxltwpkzlsibyoqgudprtrmqzhezjhahluyqktoxvau\",\n            \"user_id\": 3,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 17,\n            \"title\": \"wsalfrbgwdcnoih\",\n            \"msg\": \"cpfitqlarkczfdxhkyhozrkdimhnxlcjmilonjlbdaobqiyjekyovfaprmtfehqchnthfzuwpchrvnzygoirvwytdazgransesolf\",\n            \"user_id\": 3,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 18,\n            \"title\": \"xlpwsijyjgniekx\",\n            \"msg\": \"qenudiijddddsgnowfrhrmcfpuptqhaidpkcndulanaaezocvfabsbwgjcirhjsatkjscjfubjclobpsakddetdbpfptyzxwssbrr\",\n            \"user_id\": 3,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 21,\n            \"title\": \"bfydjurbaohubdj\",\n            \"msg\": \"ujcfyttpyhijxyarranvdwqomrmfawffqvaquqjjelmzvmlmovnslfsfrxmdkrxuxtcdstqekbgqxmpdafqlidtqrcmncvnggmbwn\",\n            \"user_id\": 3,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 27,\n            \"title\": \"rmncnrhvjkxqudg\",\n            \"msg\": \"knjkysxtmtksmqpbgwrjabpkpmamlebklavmdjvuvgprmuhbkjdygtxcilfogqngyivebqxzizlejbubdbmfcrkjsokllairnxscq\",\n            \"user_id\": 3,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 8,\n            \"title\": \"xjkkibdvazyfzlw\",\n            \"msg\": \"cdtmpcdnafypqmhfdbobhkeevrqtvtgfoaofcmjihaaazcmixpencbxdqmonpajnayiyuaxwhpxjbtbhawmrqkbhyvinjsvtapnhi\",\n            \"user_id\": 3,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 9,\n            \"title\": \"vicpxbwwxfgayac\",\n            \"msg\": \"aohnepusjhrzjmzutjygwgbrqtsfspnttbgcbgebslupsfammegwndsneguxjmhwtuzjgourbkuvsmzrozjsnkjnyyvfmobixkjgh\",\n            \"user_id\": 3,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"caeigaoudbtsjkk\",\n            \"msg\": \"joahoubhhvcavltgvxtpcokapispigwdworkdgkfzuykerlxauvlkgqthkagqviqdxlhramdnxpdmgocqgizrzdyskouissvsttxo\",\n            \"user_id\": 3,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 30,\n            \"title\": \"dhkbhcxsrsxssai\",\n            \"msg\": \"kmckjuhsvhoyyrniqwvdiadaxsgayitjjevngsskrqgtvqsbncdvqbqaiqdyilioveitqkeaiwmnchweowfhqyeafaszqdqofhvsj\",\n            \"user_id\": 3,\n            \"status\": \"Open\"\n        }\n    ],\n    \"total_page\": 556,\n    \"current_page\": 1,\n    \"previous_page\": 0,\n    \"next_page\": 2,\n    \"total_items\": 5559,\n    \"page_size\": 10\n}"
+				},
+				{
+					"name": "success - sort - created_at - asc",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 10,\n    \"page\": 1,\n    \"sort\": {\n        \"sort_name\": \"created_at\",\n        \"sort_dir\": \"asc\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Feb 2025 12:13:54 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1844"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"tickets\": [\n        {\n            \"id\": 2,\n            \"title\": \"mrmcyrsnwancgcc\",\n            \"msg\": \"gmwmfpxavgalkixbgdoaoclhswdqxvgxmnpotmwzpgggfuqnimlnidnlynghuvmenowwoyrdvpotkclthfmzajcixmaqwzqnadfhd\",\n            \"user_id\": 2,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"nwhfebsymkgviom\",\n            \"msg\": \"pnyruekaolpkrkbtjyrawnojuvmkikpnuuxteaursfhlwfxcptafmgbnqbefmudsazqwkvxbrtwaixvppbttgjongkcvabuzorhmj\",\n            \"user_id\": 2,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"aqstwbklswawzuh\",\n            \"msg\": \"lojyzmfhsnwvkamogwtriwpmbyamhhyoaernveabewgkbffdtnogtogvmondtlekfofbenvwsvobuvwdtyurlnvapzxwbviyqsqfe\",\n            \"user_id\": 2,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"caeigaoudbtsjkk\",\n            \"msg\": \"joahoubhhvcavltgvxtpcokapispigwdworkdgkfzuykerlxauvlkgqthkagqviqdxlhramdnxpdmgocqgizrzdyskouissvsttxo\",\n            \"user_id\": 3,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 6,\n            \"title\": \"wzvpkssuzqxubsz\",\n            \"msg\": \"jqzemktrnlewdnoditsjmuiritnmswxhdgkkcaflfvraxnrbhiyysmrdzeoejmkghiwrrijqvdfyyhbzpgrfdrspxdhbobwibgczp\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 7,\n            \"title\": \"hvttnivfwgvcory\",\n            \"msg\": \"eyumtctznmsyooorimtysilcznkydakaeneagmrmcbvqgjzdytxrrqsjniiplkqvozvdxkljzethuvembgfadpkpqrajxtoxytrsg\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 8,\n            \"title\": \"xjkkibdvazyfzlw\",\n            \"msg\": \"cdtmpcdnafypqmhfdbobhkeevrqtvtgfoaofcmjihaaazcmixpencbxdqmonpajnayiyuaxwhpxjbtbhawmrqkbhyvinjsvtapnhi\",\n            \"user_id\": 3,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 9,\n            \"title\": \"vicpxbwwxfgayac\",\n            \"msg\": \"aohnepusjhrzjmzutjygwgbrqtsfspnttbgcbgebslupsfammegwndsneguxjmhwtuzjgourbkuvsmzrozjsnkjnyyvfmobixkjgh\",\n            \"user_id\": 3,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 10,\n            \"title\": \"pntmokglyzcpipd\",\n            \"msg\": \"ddtwlfusltzyaysxqqqdbdpqxqyfkjkrdauqsrsaxioeneciynyxjkbrtyfoujeppbymeegjwaqicdprahqukcmvamfdoaqobravo\",\n            \"user_id\": 2,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 1,\n            \"title\": \"izyxmasnbnudrfh\",\n            \"msg\": \"yahcuswunwkkjncgyaqlsbkhkiuldnsacwckxwnwyfihkjkjuqqmscugzutaheymovkpbhzvbwmsygeywqeomehkaoanmxchuanyk\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        }\n    ],\n    \"total_page\": 556,\n    \"current_page\": 1,\n    \"previous_page\": 0,\n    \"next_page\": 2,\n    \"total_items\": 5559,\n    \"page_size\": 10\n}"
+				},
+				{
+					"name": "success - sort - created_at - desc",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 10,\n    \"page\": 1,\n    \"sort\": {\n        \"sort_name\": \"created_at\",\n        \"sort_dir\": \"desc\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Feb 2025 12:14:24 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1873"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"tickets\": [\n        {\n            \"id\": 5535,\n            \"title\": \"ideogneixalqrfp\",\n            \"msg\": \"pfvxtsatrvjjinccgghnoqyhozicvhguarmhfgrcwfiqeicmeoeuujwjcankoqrnpumzextlsdzpwqqmsprbjlujdmhuvklmdmxra\",\n            \"user_id\": 3,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 5537,\n            \"title\": \"tdluecubwfueyrh\",\n            \"msg\": \"jmcaozwnbpasezmmbtxzqfytffvvmvobykujzqgfxubufunsrnwinmxnwhbniljhqsolnrdtzxzbyetopoxmuxvyabgaxaidscdxr\",\n            \"user_id\": 2,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 5531,\n            \"title\": \"lyrardhdwnnppab\",\n            \"msg\": \"qhwcicqlewutbsnqsmbulorocnhtdtsgjfnqnxplygfthgneeqgozoqytjtqizlynzaobjlelajeyaymyfotocmzmpfyaafbjsiba\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 5533,\n            \"title\": \"reasoucxrvsebgj\",\n            \"msg\": \"tllwyyljdbooeratlejwaigvmesyzvoetdkfhuutfvrgkmirbslwpakpwcqtxepxmijecigqqoqmhjpwwmakmzdufkhmodjhcicfb\",\n            \"user_id\": 3,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 5534,\n            \"title\": \"culudmghhhngine\",\n            \"msg\": \"rzdjarsiiefjprgwevjjnpmzjqqcxpvddueuylqjnhmrclwhghtnwjbboxgftlqunrpiaypqijcrshyuhbcnslekqlvcbnlpsrohi\",\n            \"user_id\": 1,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 5536,\n            \"title\": \"kgvgrbwbfbnrxmp\",\n            \"msg\": \"xkstqqttjesxrlnxijslignsswmborbukbdwsepsnzlwjjzauynfxnjsjaaprmfvatfnldtjxmouzogstauepfvdspgckdivqvmzy\",\n            \"user_id\": 2,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 5528,\n            \"title\": \"qafvwanhrzobzuq\",\n            \"msg\": \"yqomjpewsmgakscdlcohcdrutjwjotfzgxgunmococsanhifvatuqjoinbhbeqmlktsrdjdgfjleiikiltvwafdhmduneqmkglfbf\",\n            \"user_id\": 2,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 5530,\n            \"title\": \"jwznwlvjstdplov\",\n            \"msg\": \"wwbmsinmezsdnvcwmjekdwhybykcbpmqucbfclyajdeojxoacbezbkaxzziflocpjxkmreqeoeqtfkvpbdjjdrozaknjeiixponlh\",\n            \"user_id\": 2,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 5532,\n            \"title\": \"ehcvglgatzbaaxd\",\n            \"msg\": \"jckewiztgwstyxtckmecsxomvtbauxalfzbkyccqrhlcoxisegbncdmqjxngxogbkbakrzzfbtaaspjejkkhuokejjruwiqhfuqig\",\n            \"user_id\": 3,\n            \"status\": \"Open\"\n        },\n        {\n            \"id\": 5538,\n            \"title\": \"qawajghvsxgjfac\",\n            \"msg\": \"gifcmwapyqjcrlkquoshzswxtqqdszoeqakkglsofkoxqboizebkteqswkkimgqloxjymsokojtsotlamuoicfpkzlcjlypkoxmqd\",\n            \"user_id\": 3,\n            \"status\": \"Open\"\n        }\n    ],\n    \"total_page\": 556,\n    \"current_page\": 1,\n    \"previous_page\": 0,\n    \"next_page\": 2,\n    \"total_items\": 5559,\n    \"page_size\": 10\n}"
+				},
+				{
+					"name": "success - filter - created_at - after",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 5,\n    \"page\": 1,\n    \"filter\": {\n        \"filter_name\": \"created_at\",\n        \"filter_type\": \"after\",\n        \"filter_value\": \"2025-02-03\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Feb 2025 12:53:27 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"tickets\": [\n        {\n            \"id\": 500,\n            \"title\": \"hhtnkighnlmfegt\",\n            \"msg\": \"jwvipkwcyvcfmewdpxsxzfnnbxtaytiajyhxcmgazpitgktpczaqgepqbjiojvlkzegcpbzbdxbrdfjzwxamtlgclpyxxdmqzdrtt\",\n            \"user_id\": 2,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 512,\n            \"title\": \"drecgbyygxunysc\",\n            \"msg\": \"invvuarkudwkyekwhzkniximekkyqpcmvrrjwikkuobzbsbijgmxatguvdetvfpwrvtiastmhnizupucogulvyzxqsvaxwneuhawy\",\n            \"user_id\": 2,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 492,\n            \"title\": \"lszdkkzsepdnzcu\",\n            \"msg\": \"bxhueqyerxpunnykuqcdyzdrpkvlpoecttsausgospmxkzdxgdfbzdrmuudavgduvjdmjjjfipxdsfxcajpbxbqdysmmjyzeiqanw\",\n            \"user_id\": 1,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 494,\n            \"title\": \"tprcjemhlvznrqg\",\n            \"msg\": \"jwuepzarpeprpkybtrjuofgvcahizpstunjfzkteopeneieipckkqdznngwbgxnhfkauuafwslelgawdwblurxkcjtyalpaauikyc\",\n            \"user_id\": 3,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 507,\n            \"title\": \"kcbbvshxsckihnw\",\n            \"msg\": \"iwtecivxvrzjktjagaggjfzrjambjdyvtngjqdmflwmcswqautwunmtmuxnctulzyiyegybddwarfpegmxesiuxfhszyuwoueabcf\",\n            \"user_id\": 2,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 510,\n            \"title\": \"pnoldkdxrpyilig\",\n            \"msg\": \"qmuvywputtoemerkkdzbizzddwjteqcygbcisrbwzxdveyxnjsnvaotnegksiikminkrruvpvgxpcnphrrwqnoqiwtbdvmgegrrze\",\n            \"user_id\": 1,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 490,\n            \"title\": \"cgptvmghryugmkm\",\n            \"msg\": \"doksiqwawogllrkfuveulfpxqejpqjepxsuniqgthatiampyzfhjgtyvoqdpxyupxwtmkbjgvdkinhqrttfosuiaopdczuxcportg\",\n            \"user_id\": 3,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 491,\n            \"title\": \"zzpgvoyaojckrjh\",\n            \"msg\": \"fbukfvgfiaulmrilxxjyokwjhzsqxcwxgqnxmhfnohrodnkivrqpblkmwtbkxahepcpafktspglrkchktklmgkxazibjiuzjopdpf\",\n            \"user_id\": 3,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 493,\n            \"title\": \"gjoqucukzebpovs\",\n            \"msg\": \"hmzqjjrmoqrdadlrgfllvcloczlxppcntrocsthocumwdtnwandjjxzkvbffypubutecirpaggxwvarewatikrnllrmrflszrvjed\",\n            \"user_id\": 3,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 515,\n            \"title\": \"jlnkgdeiiuevyyk\",\n            \"msg\": \"weuqdgurzqmghnhvgonwlvynkioimlgijilwynxaqvmufjhvxpdilkphpqgkvoybkcdigkyjeggpfynfecvqhtphwigyewstcfrhr\",\n            \"user_id\": 3,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        }\n    ],\n    \"total_page\": 56,\n    \"current_page\": 1,\n    \"previous_page\": 0,\n    \"next_page\": 2,\n    \"total_items\": 555,\n    \"page_size\": 10\n}"
+				},
+				{
+					"name": "success - filter - created_at - before",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 5,\n    \"page\": 1,\n    \"filter\": {\n        \"filter_name\": \"created_at\",\n        \"filter_type\": \"before\",\n        \"filter_value\": \"2025-02-03\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Feb 2025 12:54:03 GMT"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "success - filter - created_at - between",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 5,\n    \"page\": 1,\n    \"filter\": {\n        \"filter_name\": \"created_at\",\n        \"filter_type\": \"between\",\n        \"filter_value\": \"2025-02-01,2025-02-03\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Feb 2025 12:57:53 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"tickets\": [\n        {\n            \"id\": 500,\n            \"title\": \"hhtnkighnlmfegt\",\n            \"msg\": \"jwvipkwcyvcfmewdpxsxzfnnbxtaytiajyhxcmgazpitgktpczaqgepqbjiojvlkzegcpbzbdxbrdfjzwxamtlgclpyxxdmqzdrtt\",\n            \"user_id\": 2,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 512,\n            \"title\": \"drecgbyygxunysc\",\n            \"msg\": \"invvuarkudwkyekwhzkniximekkyqpcmvrrjwikkuobzbsbijgmxatguvdetvfpwrvtiastmhnizupucogulvyzxqsvaxwneuhawy\",\n            \"user_id\": 2,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 492,\n            \"title\": \"lszdkkzsepdnzcu\",\n            \"msg\": \"bxhueqyerxpunnykuqcdyzdrpkvlpoecttsausgospmxkzdxgdfbzdrmuudavgduvjdmjjjfipxdsfxcajpbxbqdysmmjyzeiqanw\",\n            \"user_id\": 1,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 494,\n            \"title\": \"tprcjemhlvznrqg\",\n            \"msg\": \"jwuepzarpeprpkybtrjuofgvcahizpstunjfzkteopeneieipckkqdznngwbgxnhfkauuafwslelgawdwblurxkcjtyalpaauikyc\",\n            \"user_id\": 3,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 507,\n            \"title\": \"kcbbvshxsckihnw\",\n            \"msg\": \"iwtecivxvrzjktjagaggjfzrjambjdyvtngjqdmflwmcswqautwunmtmuxnctulzyiyegybddwarfpegmxesiuxfhszyuwoueabcf\",\n            \"user_id\": 2,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 510,\n            \"title\": \"pnoldkdxrpyilig\",\n            \"msg\": \"qmuvywputtoemerkkdzbizzddwjteqcygbcisrbwzxdveyxnjsnvaotnegksiikminkrruvpvgxpcnphrrwqnoqiwtbdvmgegrrze\",\n            \"user_id\": 1,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 490,\n            \"title\": \"cgptvmghryugmkm\",\n            \"msg\": \"doksiqwawogllrkfuveulfpxqejpqjepxsuniqgthatiampyzfhjgtyvoqdpxyupxwtmkbjgvdkinhqrttfosuiaopdczuxcportg\",\n            \"user_id\": 3,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 491,\n            \"title\": \"zzpgvoyaojckrjh\",\n            \"msg\": \"fbukfvgfiaulmrilxxjyokwjhzsqxcwxgqnxmhfnohrodnkivrqpblkmwtbkxahepcpafktspglrkchktklmgkxazibjiuzjopdpf\",\n            \"user_id\": 3,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 493,\n            \"title\": \"gjoqucukzebpovs\",\n            \"msg\": \"hmzqjjrmoqrdadlrgfllvcloczlxppcntrocsthocumwdtnwandjjxzkvbffypubutecirpaggxwvarewatikrnllrmrflszrvjed\",\n            \"user_id\": 3,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 515,\n            \"title\": \"jlnkgdeiiuevyyk\",\n            \"msg\": \"weuqdgurzqmghnhvgonwlvynkioimlgijilwynxaqvmufjhvxpdilkphpqgkvoybkcdigkyjeggpfynfecvqhtphwigyewstcfrhr\",\n            \"user_id\": 3,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        }\n    ],\n    \"total_page\": 56,\n    \"current_page\": 1,\n    \"previous_page\": 0,\n    \"next_page\": 2,\n    \"total_items\": 555,\n    \"page_size\": 10\n}"
+				}
+			]
+		}
+	]
+}
