@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	c, err := config.LoadConfig("./internal/config")
+	c, err := config.LoadConfig("./internal/config", "migrate.json")
 	if err != nil {
 		log.Fatalln("Error loading config", err)
 	}

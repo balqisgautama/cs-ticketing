@@ -6,6 +6,7 @@ import (
 	handler "cs-ticketing/internal/handlers"
 	"cs-ticketing/internal/queries"
 	service "cs-ticketing/internal/services"
+	utilsconverter "cs-ticketing/internal/utils/converter"
 	"fmt"
 	"log"
 
@@ -13,7 +14,7 @@ import (
 )
 
 func main() {
-	c, err := config.LoadConfig("./config")
+	c, err := config.LoadConfig("./config", "dev.json")
 	if err != nil {
 		log.Fatalln("Error loading config", err)
 	}
@@ -32,13 +33,17 @@ func main() {
 	ticketQueries := queries.NewTicketQueries(db)
 	userQueries := queries.NewUserQueries(db)
 	ticketStatusQueries := queries.NewTicketStatusQueries(db)
-	ticketService := service.NewTicketService(ticketQueries, userQueries, ticketStatusQueries)
+
+	utilsConverterTicket := utilsconverter.NewUtilsConverterTicket(ticketStatusQueries)
+
+	ticketService := service.NewTicketService(ticketQueries, userQueries, ticketStatusQueries, utilsConverterTicket)
 	ticketHandler := handler.NewTicketHandler(ticketService)
 
 	// Initialize Gin router
 	r := gin.Default()
 
 	r.POST("/tickets", ticketHandler.CreateTicketHandler)
+	r.GET("/tickets", ticketHandler.GetTickets)
 
 	// Start the server
 	port := fmt.Sprintf(":%d", c.Server.Port)

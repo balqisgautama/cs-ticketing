@@ -1,0 +1,8 @@
+{
+    "postgresql": {
+      "address": "user=userdb password=password123 dbname=sod sslmode=disable host=localhost port=5432",
+      "schema": "public",
+      "max_open_connection": 500,
+      "max_idle_connection": 100
+    }
+}

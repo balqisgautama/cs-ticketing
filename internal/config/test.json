@@ -1,0 +1,16 @@
+{
+    "server": {
+      "prefix_path": "sod",
+      "host": "localhost",
+      "port": 8080,
+      "address": "localhost:8080",
+      "version": "1.0.0"
+    },
+    "postgresql": {
+      "host": "localhost",
+      "port": 5432,
+      "user": "userdb",
+      "password": "password123",
+      "db_name": "sod"
+    }
+}
