@@ -1,23 +1,20 @@
 package dtoout
 
 type Ticket struct {
-	ID     uint   `json:"id"`
-	Title  string `json:"title"`
-	Msg    string `json:"msg"`
-	UserID uint   `json:"user_id"`
-	Status string `json:"status"`
+	ID        int64  `json:"id"`
+	Title     string `json:"title"`
+	Msg       string `json:"msg"`
+	UserID    uint   `json:"user_id"`
+	Status    string `json:"status"`
+	CreatedAt string `json:"created_at"`
 }
 
-// TranslateStatus translates the status code to a user-friendly string
-func TranslateStatus(status string) string {
-	switch status {
-	case "opn":
-		return "Open"
-	case "cld":
-		return "Closed"
-	case "asn":
-		return "Assigned"
-	default:
-		return "Unknown"
-	}
+type TicketList struct {
+	Tickets      []Ticket `json:"tickets"`
+	TotalPage    *int     `json:"total_page"`
+	CurrentPage  *int     `json:"current_page"`
+	PreviousPage *int     `json:"previous_page"`
+	NextPage     *int     `json:"next_page"`
+	TotalItems   *int     `json:"total_items"`
+	PageSize     *int     `json:"page_size"`
 }

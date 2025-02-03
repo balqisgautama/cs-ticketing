@@ -1,7 +1,7 @@
 package modeldb
 
 type TicketStatus struct {
-	ID        uint   `gorm:"primaryKey"`
+	ID        int64  `gorm:"primaryKey"`
 	Name      string `gorm:"not null"`
 	Note      string `gorm:"null"`
 	CreatedAt string `gorm:"not null"`
