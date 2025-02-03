@@ -28,7 +28,7 @@ paths:
                     type: string
                     example: Ticket created successfully
                   ticket:
-                    $ref: '#/components/schemas/TicketResponse'
+                    $ref: '#/components/schemas/Ticket'
         '400':
           description: Bad request
           content:
@@ -39,6 +39,34 @@ paths:
                   error:
                     type: string
                     example: Ticket title must be between 10 and 100 characters
+    get:
+      summary: Get a list of tickets
+      operationId: getTickets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketGetRequest'
+      responses:
+        '200':
+          description: A list of tickets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     TicketCreateRequest:
@@ -63,30 +91,111 @@ components:
           type: integer
           description: ID of the user creating the ticket
           example: 1
-    TicketResponse:
+          
+    Ticket:
       type: object
       properties:
         id:
           type: integer
-          description: ID of the ticket
-          example: 5
+          example: 1
         title:
           type: string
-          description: Title of the ticket
-          example: Software is not working
+          example: "Software is not working"
         msg:
           type: string
-          description: Message of the ticket
-          example: <p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>
-        user_id:
-          type: integer
-          description: ID of the user creating the ticket
-          example: 1
+          example: "<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>"
         status:
           type: string
-          enum:
-            - Open
-            - Closed
-            - Assigned
-          description: Status of the ticket
-          example: Open
+          example: "Open"
+        user_id:
+          type: integer
+          example: 1
+        created_at:
+          type: string
+          format: date-time
+          description: "The date and time when the ticket was created in WIB (UTC+7)"
+          example: "2025-02-03 20:07:11"
+
+    TicketFilter:
+      type: object
+      properties:
+        filter_name:
+          type: string
+          enum: [created_at]
+          example: "created_at"
+        filter_type:
+          type: string
+          enum: [before, after, between]
+          example: "before"
+        filter_value:
+          type: string
+          format: date
+          example: "2022-11-14"
+        filter_value2:
+          type: string
+          format: date
+          example: "2022-11-01"
+
+    TicketSort:
+      type: object
+      properties:
+        sort_name:
+          type: string
+          enum: [created_at, user_id]
+          example: "created_at"
+        sort_dir:
+          type: string
+          enum: [asc, desc]
+          example: "asc"
+    
+    TicketGetRequest:
+      type: object
+      required:
+      - page_size
+      - page
+      properties:
+        filter:
+          $ref: '#/components/schemas/TicketFilter'
+        sort:
+          $ref: '#/components/schemas/TicketSort'
+        page_size:
+          type: integer
+          example: 20
+        page:
+          type: integer
+          example: 1
+
+    TicketResponse:
+      type: object
+      properties:
+        tickets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ticket'
+        total_page:
+          type: integer
+          example: 2
+        current_page:
+          type: integer
+          example: 1
+        previous_page:
+          type: integer
+          nullable: true
+          example: 0
+        next_page:
+          type: integer
+          nullable: true
+          example: 2
+        total_items:
+          type: integer
+          example: 30
+        page_size:
+          type: integer
+          example: 20
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "invalid date format (example: 2025-01-20)"
