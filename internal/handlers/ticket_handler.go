@@ -111,9 +111,6 @@ func (h *TicketHandler) GetTickets(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
-	} else if result.Tickets == nil {
-		c.JSON(http.StatusNoContent, gin.H{})
-		return
 	}
 
 	c.JSON(http.StatusOK, result)

@@ -63,9 +63,14 @@ func (s *TicketService) CreateTicket(dtoin *dtoin.Ticket) (*dtoout.Ticket, error
 	return result, nil
 }
 
-func (s *TicketService) GetTickets(req dtoin.TicketList, startDate int64, endDate int64) (*dtoout.TicketList, error) {
+func (s *TicketService) GetTickets(req dtoin.TicketList, startDate int64, endDate int64) (dtoout.TicketList, error) {
 	ticketFilterModel := &modeldb.TicketFilter{}
 	ticketSortModel := &modeldb.TicketSort{}
+	result := dtoout.TicketList{}
+	result.Tickets = []dtoout.Ticket{}
+	result.CurrentPage = req.Page
+	result.PageSize = req.PageSize
+	result.TotalPage = 1
 
 	if req.Filter != nil {
 		ticketFilterModel.FilterValue = startDate
@@ -81,10 +86,9 @@ func (s *TicketService) GetTickets(req dtoin.TicketList, startDate int64, endDat
 
 	tickets, total, err := s.ticketQueries.GetTickets(ticketFilterModel, ticketSortModel, req.PageSize, req.Page)
 	if err != nil {
-		return nil, err
+		return result, err
 	}
 
-	result := &dtoout.TicketList{}
 	if len(tickets) > 0 {
 		result = s.utilsConverterTiket.TicketListToTicketListResponse(tickets, int(total), req.PageSize, req.Page)
 	}
