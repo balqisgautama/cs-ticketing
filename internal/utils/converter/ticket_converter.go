@@ -41,7 +41,7 @@ func (u *UtilsConverterTiket) TicketListToTicketListResponse(
 	total int,
 	pageSize int,
 	page int,
-) *dtoout.TicketList {
+) dtoout.TicketList {
 	var result []dtoout.Ticket
 	for _, ticket := range tickets {
 		ticketResponse, err := u.TicketToTicketResponse(ticket)
@@ -67,14 +67,14 @@ func (u *UtilsConverterTiket) TicketListToTicketListResponse(
 		nextPage = 0 // or null
 	}
 
-	return &dtoout.TicketList{
+	return dtoout.TicketList{
 		Tickets:      result,
-		TotalPage:    &totalPages,
-		CurrentPage:  &currentPage,
-		PreviousPage: &previousPage,
-		NextPage:     &nextPage,
-		TotalItems:   &total,
-		PageSize:     &pageSize,
+		TotalPage:    totalPages,
+		CurrentPage:  currentPage,
+		PreviousPage: previousPage,
+		NextPage:     nextPage,
+		TotalItems:   total,
+		PageSize:     pageSize,
 	}
 }
 

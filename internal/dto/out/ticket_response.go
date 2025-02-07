@@ -11,10 +11,10 @@ type Ticket struct {
 
 type TicketList struct {
 	Tickets      []Ticket `json:"tickets"`
-	TotalPage    *int     `json:"total_page"`
-	CurrentPage  *int     `json:"current_page"`
-	PreviousPage *int     `json:"previous_page"`
-	NextPage     *int     `json:"next_page"`
-	TotalItems   *int     `json:"total_items"`
-	PageSize     *int     `json:"page_size"`
+	TotalPage    int      `json:"total_page"`
+	CurrentPage  int      `json:"current_page"`
+	PreviousPage int      `json:"previous_page"`
+	NextPage     int      `json:"next_page"`
+	TotalItems   int      `json:"total_items"`
+	PageSize     int      `json:"page_size"`
 }
