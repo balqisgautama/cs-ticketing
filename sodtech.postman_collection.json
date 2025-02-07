@@ -16,7 +16,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"ticket_title\": \"Software is not working\",\n  \"ticket_msg\": \"<p>This is a valid ticket message with more than 100 characters. It should pass the validation checks.</p>\",\n  \"user_id\": 1\n}",
+					"raw": "{\n  \"ticket_title\": \"Software is not working\",\n  \"ticket_msg\": \"<p>Hello, please assist as I cannot take a screenshot</p>\",\n  \"user_id\": 1\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -466,8 +466,8 @@
 							]
 						}
 					},
-					"status": "No Content",
-					"code": 204,
+					"status": "OK",
+					"code": 200,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
@@ -480,7 +480,7 @@
 						}
 					],
 					"cookie": [],
-					"body": null
+					"body": "{\n    \"tickets\": [],\n    \"total_page\": 1,\n    \"current_page\": 1,\n    \"previous_page\": 0,\n    \"next_page\": 0,\n    \"total_items\": 0,\n    \"page_size\": 10\n}"
 				},
 				{
 					"name": "success - page and size only",
@@ -1177,6 +1177,256 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"tickets\": [\n        {\n            \"id\": 500,\n            \"title\": \"hhtnkighnlmfegt\",\n            \"msg\": \"jwvipkwcyvcfmewdpxsxzfnnbxtaytiajyhxcmgazpitgktpczaqgepqbjiojvlkzegcpbzbdxbrdfjzwxamtlgclpyxxdmqzdrtt\",\n            \"user_id\": 2,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 512,\n            \"title\": \"drecgbyygxunysc\",\n            \"msg\": \"invvuarkudwkyekwhzkniximekkyqpcmvrrjwikkuobzbsbijgmxatguvdetvfpwrvtiastmhnizupucogulvyzxqsvaxwneuhawy\",\n            \"user_id\": 2,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 492,\n            \"title\": \"lszdkkzsepdnzcu\",\n            \"msg\": \"bxhueqyerxpunnykuqcdyzdrpkvlpoecttsausgospmxkzdxgdfbzdrmuudavgduvjdmjjjfipxdsfxcajpbxbqdysmmjyzeiqanw\",\n            \"user_id\": 1,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 494,\n            \"title\": \"tprcjemhlvznrqg\",\n            \"msg\": \"jwuepzarpeprpkybtrjuofgvcahizpstunjfzkteopeneieipckkqdznngwbgxnhfkauuafwslelgawdwblurxkcjtyalpaauikyc\",\n            \"user_id\": 3,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 507,\n            \"title\": \"kcbbvshxsckihnw\",\n            \"msg\": \"iwtecivxvrzjktjagaggjfzrjambjdyvtngjqdmflwmcswqautwunmtmuxnctulzyiyegybddwarfpegmxesiuxfhszyuwoueabcf\",\n            \"user_id\": 2,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 510,\n            \"title\": \"pnoldkdxrpyilig\",\n            \"msg\": \"qmuvywputtoemerkkdzbizzddwjteqcygbcisrbwzxdveyxnjsnvaotnegksiikminkrruvpvgxpcnphrrwqnoqiwtbdvmgegrrze\",\n            \"user_id\": 1,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 490,\n            \"title\": \"cgptvmghryugmkm\",\n            \"msg\": \"doksiqwawogllrkfuveulfpxqejpqjepxsuniqgthatiampyzfhjgtyvoqdpxyupxwtmkbjgvdkinhqrttfosuiaopdczuxcportg\",\n            \"user_id\": 3,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 491,\n            \"title\": \"zzpgvoyaojckrjh\",\n            \"msg\": \"fbukfvgfiaulmrilxxjyokwjhzsqxcwxgqnxmhfnohrodnkivrqpblkmwtbkxahepcpafktspglrkchktklmgkxazibjiuzjopdpf\",\n            \"user_id\": 3,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 493,\n            \"title\": \"gjoqucukzebpovs\",\n            \"msg\": \"hmzqjjrmoqrdadlrgfllvcloczlxppcntrocsthocumwdtnwandjjxzkvbffypubutecirpaggxwvarewatikrnllrmrflszrvjed\",\n            \"user_id\": 3,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        },\n        {\n            \"id\": 515,\n            \"title\": \"jlnkgdeiiuevyyk\",\n            \"msg\": \"weuqdgurzqmghnhvgonwlvynkioimlgijilwynxaqvmufjhvxpdilkphpqgkvoybkcdigkyjeggpfynfecvqhtphwigyewstcfrhr\",\n            \"user_id\": 3,\n            \"status\": \"Open\",\n            \"created_at\": \"2025-02-03 19:21:49\"\n        }\n    ],\n    \"total_page\": 56,\n    \"current_page\": 1,\n    \"previous_page\": 0,\n    \"next_page\": 2,\n    \"total_items\": 555,\n    \"page_size\": 10\n}"
+				},
+				{
+					"name": "failed - filter - one of them is empty",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 10,\n    \"page\": 1,\n    \"filter\": {\n        \"filter_name\": \"created_at\",\n        \"filter_type\": \"\",\n        \"filter_value\": \"2025-01-18,2025-02-03\"\n    },\n    \"sort\": {\n        \"sort_name\": \"user_idm\",\n        \"sort_dir\": \"asc\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 07 Feb 2025 04:09:21 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "90"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"filter_name, filter_type, and filter_value must be filled if filter is not nil\"\n}"
+				},
+				{
+					"name": "failed - filter- between - invalid date",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 10,\n    \"page\": 1,\n    \"filter\": {\n        \"filter_name\": \"created_at\",\n        \"filter_type\": \"between\",\n        \"filter_value\": \"2025-01-18\"\n    },\n    \"sort\": {\n        \"sort_name\": \"user_idm\",\n        \"sort_dir\": \"asc\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 07 Feb 2025 04:11:36 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "93"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"date must be in the format 'start_date,end_date' (example: 2025-01-20,2025-01-25)\"\n}"
+				},
+				{
+					"name": "failed - filter - invalid filter_type",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 10,\n    \"page\": 1,\n    \"filter\": {\n        \"filter_name\": \"created_at\",\n        \"filter_type\": \"between1\",\n        \"filter_value\": \"2025-01-18,2025-02-03\"\n    },\n    \"sort\": {\n        \"sort_name\": \"user_idm\",\n        \"sort_dir\": \"asc\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 07 Feb 2025 04:12:19 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "70"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"filter_type must be one of 'before', 'after', or 'between'\"\n}"
+				},
+				{
+					"name": "failed - sort - invalid sort_dir",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 10,\n    \"page\": 1,\n    \"filter\": {\n        \"filter_name\": \"created_at\",\n        \"filter_type\": \"between\",\n        \"filter_value\": \"2025-01-18,2025-02-03\"\n    },\n    \"sort\": {\n        \"sort_name\": \"user_id\",\n        \"sort_dir\": \"asc1\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 07 Feb 2025 04:13:00 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"sort_dir must be 'asc' or 'desc'\"\n}"
+				},
+				{
+					"name": "failed - sort - one of them is empty",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page_size\": 10,\n    \"page\": 1,\n    \"filter\": {\n        \"filter_name\": \"created_at\",\n        \"filter_type\": \"between\",\n        \"filter_value\": \"2025-01-18,2025-02-03\"\n    },\n    \"sort\": {\n        \"sort_name\": \"\",\n        \"sort_dir\": \"asc\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 07 Feb 2025 04:17:49 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"sort_name and sort_dir must be filled if sort is not nil\"\n}"
 				}
 			]
 		}

@@ -54,6 +54,18 @@ func (h *TicketHandler) GetTickets(c *gin.Context) {
 		return
 	}
 
+	err := dtoin.ValidateTicketFilter(req.Filter)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	err = dtoin.ValidateTicketSort(req.Sort)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
 	validPageSizes := []int{10, 20, 30, 40, 50}
 	for _, size := range validPageSizes {
 		if req.PageSize <= size+5 {
@@ -71,7 +83,7 @@ func (h *TicketHandler) GetTickets(c *gin.Context) {
 		now := time.Now()
 		// Assuming "between" filter value is in the format "start_date,end_date"
 		dates := strings.Split(req.Filter.FilterValue, ",")
-		if len(dates) > 0 && len(dates) < 2 {
+		if len(dates) > 0 && len(dates) < 2 && req.Filter.FilterType != "between" {
 			tempValue, err := time.Parse("2006-01-02", dates[0])
 			if err != nil {
 				c.JSON(http.StatusBadRequest, gin.H{"error": errors.New("invalid date format (example: 2025-01-20)").Error()})
@@ -84,7 +96,7 @@ func (h *TicketHandler) GetTickets(c *gin.Context) {
 		if len(dates) == 2 && req.Filter.FilterType == "between" {
 			tempValue, err := time.Parse("2006-01-02", dates[1])
 			if err != nil {
-				c.JSON(http.StatusBadRequest, gin.H{"error": errors.New("invalid date format (example: 2025-01-20,2025-01-25)").Error()})
+				c.JSON(http.StatusBadRequest, gin.H{"error": errors.New("date must be in the format 'start_date,end_date' (example: 2025-01-20,2025-01-25)").Error()})
 				return
 			}
 
@@ -99,6 +111,9 @@ func (h *TicketHandler) GetTickets(c *gin.Context) {
 				c.JSON(http.StatusBadRequest, gin.H{"error": errors.New("start date must be different from end date").Error()})
 				return
 			}
+		} else if condition := len(dates) == 1 && req.Filter.FilterType == "between"; condition {
+			c.JSON(http.StatusBadRequest, gin.H{"error": errors.New("date must be in the format 'start_date,end_date' (example: 2025-01-20,2025-01-25)").Error()})
+			return
 		}
 
 		if startDate > now.Unix() || endDate > now.Unix() {
